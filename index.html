@@ -196,7 +196,7 @@
         /* App Mockups Gallery */
         .mockups-gallery {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
             align-items: center;
             padding: 1rem 2rem 1rem;
@@ -215,19 +215,52 @@
             flex-shrink: 0;
             width: 170px;
             transition: transform 0.3s ease-out;
+            position: relative;
         }
         
         .mockup-item img {
             width: 100%;
             height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             transition: transform 0.3s ease-out;
         }
         
         .mockup-item:hover {
-            transform: scale(1.08);
+            transform: translateY(-10px) scale(1.02); /* Hover efekti */
             z-index: 10;
+        }
+
+        /* --- ÖZEL PARILTI RENKLERİ (Her telefon için ayrı ayrı) --- */
+        
+        /* 1. Telefon (Kırmızı/Pembe Ekran) */
+        .mockup-item:nth-child(1) img {
+            box-shadow: 0 25px 60px -10px rgba(215, 114, 109, 0.6);
+        }
+
+        /* 2. Telefon (Yeşil/Teal Ekran) */
+        .mockup-item:nth-child(2) img {
+            box-shadow: 0 25px 60px -10px rgba(118, 163, 160, 0.6);
+        }
+
+        /* 3. Telefon (Mavi/Harita Ekran) */
+        .mockup-item:nth-child(3) img {
+            box-shadow: 0 25px 60px -10px rgba(132, 196, 235, 0.6);
+        }
+
+        /* 4. Telefon (Kahverengi/İstatistik Ekran) */
+        .mockup-item:nth-child(4) img {
+            box-shadow: 0 25px 60px -10px rgba(196, 143, 94, 0.6);
+        }
+
+        /* 5. Telefon (Koyu Kahve/Zamanlayıcı) */
+        .mockup-item:nth-child(5) img {
+            box-shadow: 0 25px 60px -10px rgba(140, 80, 80, 0.5);
+        }
+
+        /* 6. Telefon (Koyu Mod/Ayarlar) */
+        .mockup-item:nth-child(6) img {
+            box-shadow: 0 25px 60px -10px rgba(150, 100, 255, 0.4); /* Morumsu bir hava kattım */
         }
         
         /* Ratings Section */
