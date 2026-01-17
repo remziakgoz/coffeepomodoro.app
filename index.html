@@ -230,103 +230,110 @@
             z-index: 10;
         }
         
-        /* Ratings Section - DÜZELTİLDİ */
-/* Ratings Section - KÜÇÜLTÜLMÜŞ VE GÜNCELLENMİŞ */
-.ratings {
-    display: flex;
-    gap: 3rem; /* Boşluk azaltıldı (4rem -> 3rem) */
-    justify-content: center;
-    align-items: center;
-    padding: 0 1.5rem 1.5rem; /* Padding azaltıldı (2rem -> 1.5rem) */
-    margin-top: -1rem;
-    flex-wrap: wrap;
-}
+        /* Ratings Section - KÜÇÜLTÜLMÜŞ VE GÜNCELLENMİŞ */
+        .ratings {
+            display: flex;
+            gap: 3rem; 
+            justify-content: center;
+            align-items: center;
+            padding: 0 1.5rem 1.5rem; 
+            margin-top: -1rem;
+            flex-wrap: wrap;
+        }
 
-.rating-block {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem; /* İkon ve metin arası boşluk azaltıldı (1rem -> 0.75rem) */
-}
+        .rating-block {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; 
+        }
 
-/* --- SOL VE SAĞ BLOK AYARLARI (Aynı kalıyor) --- */
-.rating-block.left {
-    text-align: right;
-}
-.rating-block.left .rating-text-group {
-    align-items: flex-end;
-}
+        /* --- SOL VE SAĞ BLOK AYARLARI --- */
+        .rating-block.left {
+            text-align: right;
+        }
+        .rating-block.left .rating-text-group {
+            align-items: flex-end;
+        }
 
-.rating-block.right {
-    text-align: left;
-}
-.rating-block.right .rating-text-group {
-    align-items: flex-start;
-}
+        .rating-block.right {
+            text-align: left;
+        }
+        .rating-block.right .rating-text-group {
+            align-items: flex-start;
+        }
 
-/* --- ORTAK METİN STİLLERİ (Font boyutları küçültüldü) --- */
-.rating-text-group {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    line-height: 1.1; /* Satır yüksekliği biraz azaltıldı */
-}
+        /* --- ORTAK METİN STİLLERİ --- */
+        .rating-text-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.1; 
+        }
 
-.score {
-    font-size: 1.25rem; /* Font boyutu küçültüldü (1.5rem -> 1.25rem) */
-    font-weight: 800;
-    color: #fff;
-}
+        .score {
+            font-size: 1.25rem; 
+            font-weight: 800;
+            color: #fff;
+        }
 
-.score .total {
-    font-size: 0.85rem; /* Font boyutu küçültüldü (1rem -> 0.85rem) */
-    font-weight: 600;
-    color: #bbb;
-}
+        .score .total {
+            font-size: 0.85rem; 
+            font-weight: 600;
+            color: #bbb;
+        }
 
-/* --- YENİ YILDIZ SİSTEMİ (Puana göre doluluk) --- */
-.stars {
-    display: inline-block;
-    font-size: 1rem; /* Font boyutu küçültüldü (1.2rem -> 1rem) */
-    position: relative;
-    letter-spacing: 1px; /* Harf aralığı azaltıldı (2px -> 1px) */
-    margin-top: 2px; /* Üst boşluk eklendi */
-}
+        /* --- YILDIZ SİSTEMİ --- */
+        .stars {
+            display: inline-block;
+            font-size: 1rem; 
+            position: relative;
+            letter-spacing: 1px; 
+            margin-top: 2px; 
+        }
 
-.stars-empty {
-    color: #555; /* Boş yıldızların rengi (koyu gri) */
-}
+        .stars-empty {
+            color: #555; 
+        }
 
-.stars-filled {
-    color: #FFD700; /* Dolu yıldızların rengi (altın sarısı) */
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    overflow: hidden;
-}
+        .stars-filled {
+            color: #FFD700; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
 
-/* --- İKON STİLLERİ (Boyutlar küçültüldü) --- */
-.store-icon {
-    width: 44px; /* Genişlik küçültüldü (54px -> 44px) */
-    height: 44px; /* Yükseklik küçültüldü (54px -> 44px) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
+        /* --- İKON STİLLERİ --- */
+        .store-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
 
-.store-icon svg {
-    width: 100%;
-    height: 100%;
-    fill: #fff;
-}
+        .store-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #fff;
+        }
 
-/* --- YENİ APP STORE LOGOSU İÇİN ÖZEL AYAR --- */
-.store-icon.apple-new svg {
-    /* Yeni logo daha ince olduğu için biraz daha büyük görünmesi gerekebilir. */
-    width: 110%; 
-    height: 110%;
-}
+        /* --- YENİ APP STORE (PNG) LOGOSU İÇİN ÖZEL AYAR --- */
+        .store-icon.apple-new {
+            border: 2px solid #fff;
+            border-radius: 50%;
+            padding: 10px; /* Logoyu içeri çekip ortalar */
+        }
+
+        .store-icon.apple-new img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Resim siyahsa veya renkliyse BEYAZ yapmak için filtre: */
+            filter: brightness(0) invert(1);
+        }
 
         /* Reviews Section */
         .reviews {
@@ -628,39 +635,40 @@
         </div>
     </section>
 
-<section class="ratings">
-    <div class="rating-block left">
-        <div class="rating-text-group">
-            <div class="score">4.8<span class="total">/5</span></div>
-            
-            <div class="stars">
-                <span class="stars-empty">★★★★★</span>
-                <span class="stars-filled" style="width: 96%;">★★★★★</span> </div>
-            </div>
+    <section class="ratings">
         
-        <div class="store-icon apple-new">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm.859-12.586h-1.718l-3.825 9.172h1.628l.961-2.438h4.19l.961 2.438h1.628l-3.825-9.172zm-2.264 5.695l1.405-3.578 1.405 3.578h-2.81z"/>
-            </svg>
-        </div>
-    </div>
-
-    <div class="rating-block right">
-        <div class="store-icon google">
-            <svg viewBox="0 0 512 512" fill="currentColor">
-                <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.2 60.1 60.1L104.6 499z"/>
-            </svg>
-        </div>
-
-        <div class="rating-text-group">
-            <div class="score">4.5<span class="total">/5</span></div>
-            
-            <div class="stars">
-                <span class="stars-empty">★★★★★</span>
-                <span class="stars-filled" style="width: 90%;">★★★★★</span> </div>
+        <div class="rating-block left">
+            <div class="rating-text-group">
+                <div class="score">4.8<span class="total">/5</span></div>
+                
+                <div class="stars">
+                    <span class="stars-empty">★★★★★</span>
+                    <span class="stars-filled" style="width: 96%;">★★★★★</span> 
+                </div>
             </div>
-    </div>
-</section>
+            
+            <div class="store-icon apple-new">
+                <img src="images/appstore.png" alt="App Store">
+            </div>
+        </div>
+
+        <div class="rating-block right">
+            <div class="store-icon google">
+                <svg viewBox="0 0 512 512" fill="currentColor">
+                    <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.2 60.1 60.1L104.6 499z"/>
+                </svg>
+            </div>
+
+            <div class="rating-text-group">
+                <div class="score">4.5<span class="total">/5</span></div>
+                
+                <div class="stars">
+                    <span class="stars-empty">★★★★★</span>
+                    <span class="stars-filled" style="width: 90%;">★★★★★</span> 
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="reviews">
         <div class="reviews-grid">
@@ -780,7 +788,7 @@
                 <div class="feature-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="3"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                     </svg>
                 </div>
                 <div class="feature-content">
