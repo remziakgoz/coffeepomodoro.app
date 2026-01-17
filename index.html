@@ -602,42 +602,49 @@
             }
             /* -------------------------------- */
             
-/* --- RATINGS (PUANLAR) - YAN YANA DURMASI İÇİN --- */
+/* --- RATINGS (PUANLAR) - LOGOLAR ORTADA --- */
             .ratings { 
                 flex-direction: row; /* Yan yana diz */
                 flex-wrap: wrap;     /* Sığmazsa aşağı kaydır */
-                gap: 1.5rem;         /* Aralarındaki boşluk */
+                gap: 1rem;           /* Aralarındaki boşluk */
                 justify-content: center;
+                margin-top: 1rem;
             }
             
-            /* Rating bloklarını (ikon+puan) ortala */
             .rating-block { 
                 justify-content: center;
-                /* Genişlik vererek yan yana sığmalarını garantiye alalım */
-                min-width: 140px; 
+                min-width: auto; 
             }
             
-            /* Metin hizalamalarını mobile göre ortala */
+            /* ORTAK METİN AYARLARI */
             .rating-block.left .rating-text-group,
             .rating-block.right .rating-text-group {
-                align-items: center;
-                text-align: center;
+                /* Metinleri dikeyde ortala */
+                justify-content: center;
             }
             
-            /* Blok içindeki ikon ve yazının yönünü ayarla */
+            /* --- SOL BLOK (APPLE) --- */
+            /* HTML sırası: [Yazı] [İkon] */
             .rating-block.left { 
-                flex-direction: row-reverse; /* İkon solda, yazı sağda kalsın diye */
+                flex-direction: row; /* Normal sıralama kalsın (Yazı -> İkon) */
                 gap: 0.5rem; 
-                text-align: left; /* Metni sola hizala */
+                text-align: right; /* Yazıyı sağa (ikona doğru) yasla */
             }
             
             .rating-block.left .rating-text-group {
-                align-items: flex-start; /* Yazıları sola yasla */
+                align-items: flex-end; /* Yıldızları sağa yasla */
             }
 
+            /* --- SAĞ BLOK (GOOGLE) --- */
+            /* HTML sırası: [İkon] [Yazı] */
             .rating-block.right { 
-                flex-direction: row; 
+                flex-direction: row; /* Normal sıralama (İkon -> Yazı) */
                 gap: 0.5rem; 
+                text-align: left; /* Yazıyı sola (ikona doğru) yasla */
+            }
+            
+            .rating-block.right .rating-text-group {
+                align-items: flex-start; /* Yıldızları sola yasla */
             }
         }
     </style>
