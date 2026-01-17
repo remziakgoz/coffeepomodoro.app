@@ -193,13 +193,13 @@
             font-weight: 600;
         }
         
-        /* App Mockups Gallery */
+/* App Mockups Gallery */
         .mockups-gallery {
             display: flex;
             gap: 2rem;
             justify-content: center;
             align-items: center;
-            padding: 1rem 2rem 1rem;
+            padding: 2rem 2rem 3rem;
             max-width: 1400px;
             margin: 0 auto;
             overflow-x: auto;
@@ -215,52 +215,58 @@
             flex-shrink: 0;
             width: 170px;
             transition: transform 0.3s ease-out;
-            position: relative;
+            position: relative; 
         }
         
         .mockup-item img {
             width: 100%;
             height: auto;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease-out;
+            
+            /* Varsayılan olarak çok hafif bir gölge */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            
+            /* Geçiş efekti parıltı için de geçerli olsun */
+            transition: all 0.3s ease-out;
         }
         
+        /* Hover durumunda telefon biraz yukarı kalksın */
         .mockup-item:hover {
-            transform: translateY(-10px) scale(1.02); /* Hover efekti */
+            transform: translateY(-8px) scale(1.02);
             z-index: 10;
         }
 
-        /* --- ÖZEL PARILTI RENKLERİ (Her telefon için ayrı ayrı) --- */
-        
-        /* 1. Telefon (Kırmızı/Pembe Ekran) */
-        .mockup-item:nth-child(1) img {
-            box-shadow: 0 25px 60px -10px rgba(215, 114, 109, 0.6);
+        /* --- İNCE PARILTI EFEKTLERİ (Sadece çerçeve etrafında) --- */
+        /* Hover durumunda parıltının artması için :hover img seçicisini kullanıyoruz */
+
+        /* 1. Telefon (Kırmızı/Pembe) */
+        .mockup-item:nth-child(1):hover img {
+            box-shadow: 0 0 20px 2px rgba(215, 114, 109, 0.5);
         }
 
-        /* 2. Telefon (Yeşil/Teal Ekran) */
-        .mockup-item:nth-child(2) img {
-            box-shadow: 0 25px 60px -10px rgba(118, 163, 160, 0.6);
+        /* 2. Telefon (Yeşil/Teal) */
+        .mockup-item:nth-child(2):hover img {
+            box-shadow: 0 0 20px 2px rgba(118, 163, 160, 0.5);
         }
 
-        /* 3. Telefon (Mavi/Harita Ekran) */
-        .mockup-item:nth-child(3) img {
-            box-shadow: 0 25px 60px -10px rgba(132, 196, 235, 0.6);
+        /* 3. Telefon (Mavi) */
+        .mockup-item:nth-child(3):hover img {
+            box-shadow: 0 0 20px 2px rgba(132, 196, 235, 0.5);
         }
 
-        /* 4. Telefon (Kahverengi/İstatistik Ekran) */
-        .mockup-item:nth-child(4) img {
-            box-shadow: 0 25px 60px -10px rgba(196, 143, 94, 0.6);
+        /* 4. Telefon (Kahverengi) */
+        .mockup-item:nth-child(4):hover img {
+            box-shadow: 0 0 20px 2px rgba(196, 143, 94, 0.5);
         }
 
-        /* 5. Telefon (Koyu Kahve/Zamanlayıcı) */
-        .mockup-item:nth-child(5) img {
-            box-shadow: 0 25px 60px -10px rgba(140, 80, 80, 0.5);
+        /* 5. Telefon (Koyu Kahve) */
+        .mockup-item:nth-child(5):hover img {
+            box-shadow: 0 0 20px 2px rgba(140, 80, 80, 0.5);
         }
 
-        /* 6. Telefon (Koyu Mod/Ayarlar) */
-        .mockup-item:nth-child(6) img {
-            box-shadow: 0 25px 60px -10px rgba(150, 100, 255, 0.4); /* Morumsu bir hava kattım */
+        /* 6. Telefon (Mor) */
+        .mockup-item:nth-child(6):hover img {
+            box-shadow: 0 0 20px 2px rgba(150, 100, 255, 0.5);
         }
         
         /* Ratings Section */
