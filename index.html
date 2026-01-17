@@ -6,26 +6,22 @@
     <title>CoffeePomodoro - Brew Your Productivity, One Pomodoro at a Time</title>
     <meta name="description" content="Transform your focus sessions into a rewarding coffee journey with CoffeePomodoro. Level up, track streaks, and stay motivated with beautiful coffee-themed animations.">
     
-    <!-- Open Graph -->
     <meta property="og:title" content="CoffeePomodoro - Brew Your Productivity">
     <meta property="og:description" content="Transform your focus sessions into a rewarding coffee journey. Track your pomodoros, level up, and stay motivated.">
     <meta property="og:image" content="https://remziakgoz.github.io/coffeepomodoro.app/images/2.png">
     <meta property="og:url" content="https://coffeepomodoro.app">
     <meta property="og:type" content="website">
     
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CoffeePomodoro - Brew Your Productivity">
     <meta name="twitter:description" content="Transform your focus sessions into a rewarding coffee journey with beautiful coffee-themed animations.">
     <meta name="twitter:image" content="https://remziakgoz.github.io/coffeepomodoro.app/images/2.png">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/playstore.png">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -42,7 +38,7 @@
             overflow-x: hidden;
         }
         
-        /* Navigation */
+        /* Navigation (Aynı kalacak) */
         nav {
             position: fixed;
             top: 0;
@@ -97,7 +93,7 @@
             color: #fff;
         }
         
-        /* Hero Section */
+        /* Hero Section (Aynı kalacak) */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -131,7 +127,7 @@
             line-height: 1.5;
         }
         
-        /* Download Buttons - Larger */
+        /* Download Buttons (Aynı kalacak) */
         .download-buttons {
             display: flex;
             gap: 1rem;
@@ -184,7 +180,7 @@
             font-weight: 600;
         }
         
-        /* App Mockups Gallery */
+        /* App Mockups Gallery (Aynı kalacak) */
         .mockups-gallery {
             display: flex;
             gap: 1.5rem;
@@ -214,57 +210,92 @@
             z-index: 10;
         }
         
-        /* Ratings Section - HabitKit Style */
+        /* --- Ratings Section - YENİ TASARIM (HabitKit Stili) --- */
         .ratings {
             display: flex;
-            gap: 3rem;
+            gap: 4rem; /* Bloklar arasındaki boşluğu açtık */
             justify-content: center;
-            align-items: flex-start;
-            padding: 1.5rem 2rem 1rem;
+            align-items: center;
+            padding: 3rem 2rem 2rem; /* Üst boşluğu biraz artırdık */
             flex-wrap: wrap;
         }
-        
-        .rating-item {
+
+        /* Her bir mağaza puan bloğu (sol ve sağ) */
+        .rating-block {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem; /* Metin grubu ile ikon arasındaki boşluk */
+        }
+
+        /* Metinlerin (puan, yıldız, yorum sayısı) bulunduğu grup */
+        .rating-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Sol blok (App Store) metinlerini sağa hizala */
+        .rating-block.left .rating-text-group {
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        /* Sağ blok (Google Play) metinlerini sola hizala */
+        .rating-block.right .rating-text-group {
+            align-items: flex-start;
+            text-align: left;
         }
         
-        .rating-content {
-            text-align: center;
-        }
-        
+        /* Puan (örn: 4.7/5) - Kalın ve büyük */
         .rating-score {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #ccc;
-            margin-bottom: 0.15rem;
+            font-size: 1.1rem;
+            font-weight: 800; /* Fontu iyice kalınlaştırdık */
+            color: #fff;
+            line-height: 1.2;
         }
         
+        /* Puanın '/5' kısmı biraz daha ince olabilir */
+        .rating-score span {
+            font-weight: 600;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Yıldızlar */
         .rating-stars {
             color: #FFD700;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            font-size: 1.2rem;
+            letter-spacing: 0; /* Harf aralığını sıfırladık, daha sıkı dursun */
+            margin: 0.1rem 0;
         }
         
-        .store-logo {
-            width: 32px;
-            height: 32px;
+        /* İnceleme Sayısı (örn: 1,700+ Reviews) */
+        .review-count {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: underline; /* Altı çizili */
+            text-underline-offset: 3px;
+            cursor: pointer; /* Tıklanabilir hissi verelim */
+        }
+        
+        /* Mağaza İkonunun Kapsayıcısı */
+        .store-icon-wrapper {
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        .store-logo svg {
-            width: 28px;
-            height: 28px;
+        .store-icon-wrapper svg {
+            width: 36px; /* İkonu biraz büyüttük */
+            height: 36px;
+            /* Google Play ikonu için beyaz renk */
+            fill: #fff;
         }
+        /* -------------------------------------------------- */
         
-        .store-logo.apple svg {
-            color: #fff;
-        }
-        
-        /* Reviews Section */
+        /* Reviews Section (Aynı kalacak) */
         .reviews {
             padding: 1.5rem 2rem 4rem;
             max-width: 1200px;
@@ -272,8 +303,7 @@
         }
         
         .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: grid;<br>            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
         
@@ -318,7 +348,7 @@
             color: #666;
         }
         
-        /* Features List */
+        /* Features List (Aynı kalacak) */
         .features-list {
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -365,7 +395,7 @@
             color: #888;
         }
         
-        /* CTA Section */
+        /* CTA Section (Aynı kalacak) */
         .cta {
             padding: 6rem 2rem;
             text-align: center;
@@ -383,7 +413,7 @@
             margin-bottom: 2rem;
         }
         
-        /* Footer */
+        /* Footer (Aynı kalacak) */
         footer {
             padding: 3rem 2rem;
             border-top: 1px solid #1a1a1a;
@@ -421,7 +451,7 @@
             font-size: 0.85rem;
         }
         
-        /* Responsive */
+        /* Responsive (Güncellendi) */
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
@@ -467,8 +497,33 @@
                 transform: scale(1.05);
             }
             
+            /* Ratings bölümü mobilde alt alta ve ortalı olsun */
             .ratings {
+                flex-direction: column;
                 gap: 2rem;
+                text-align: center;
+            }
+
+            .rating-block {
+                justify-content: center; /* İçeriği ortala */
+            }
+
+            /* Mobilde her iki bloğun metnini de merkeze hizala */
+            .rating-block.left .rating-text-group,
+            .rating-block.right .rating-text-group {
+                align-items: center;
+                text-align: center;
+            }
+
+            /* Mobilde ikonların yerini değiştirelim: Metnin üstüne alalım */
+            .rating-block.left {
+                flex-direction: column-reverse; /* İkonu üste al */
+                gap: 0.5rem;
+            }
+            
+            .rating-block.right {
+                flex-direction: column; /* İkonu üste al */
+                gap: 0.5rem;
             }
             
             .footer-content {
@@ -485,7 +540,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <a href="#" class="logo">
             <img src="images/playstore.png" alt="CoffeePomodoro">
@@ -497,7 +551,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <h1><span class="highlight">Brew Your Productivity</span><br>One Pomodoro at a Time</h1>
         <p>Transform your focus sessions into a rewarding coffee journey. Track your pomodoros, level up through coffee ranks, and stay motivated with beautiful animations.</p>
@@ -544,7 +597,6 @@
             </a>
         </div>
         
-        <!-- 6 Mockups Gallery -->
         <div class="mockups-gallery">
             <div class="mockup-item">
                 <img src="images/1.png" alt="CoffeePomodoro Screenshot 1">
@@ -567,54 +619,30 @@
         </div>
     </section>
 
-    <!-- Ratings Section - HabitKit Style -->
     <section class="ratings">
-        <div class="rating-item">
-            <div class="rating-content">
-                <div class="rating-score">4.7/5</div>
+        <div class="rating-block left">
+            <div class="rating-text-group">
+                <div class="rating-score">4.7<span>/5</span></div>
                 <div class="rating-stars">★★★★★</div>
+                <div class="review-count">1,200+ Reviews</div>
             </div>
-            <div class="store-logo apple">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                </svg>
+            <div class="store-icon-wrapper">
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M256 23.001C127.465 23.001 23 127.464 23 256c0 128.535 104.465 232.999 233 232.999 128.535 0 233-104.464 233-232.999 0-128.536-104.465-232.999-233-232.999zm114.104 284.227c-2.384 3.763-14.543 25.17-29.243 46.434-8.853 12.8-18.043 25.558-32.487 25.828-14.172.27-18.74-8.393-34.992-8.393-16.249 0-21.359 8.123-34.704 8.654-13.9.56-24.488-14.054-33.398-26.918-18.207-26.261-32.132-74.723-13.461-107.18 9.271-16.141 25.835-26.374 43.836-26.643 13.622-.25 26.511 9.19 34.861 9.19 8.342 0 24.016-11.351 40.503-9.685 6.896.281 26.251 2.782 38.68 21.022-1.006.62-23.088 13.527-22.868 40.526.253 32.162 28.254 42.911 28.533 43.024-.228.721-4.447 15.347-14.666 30.124l-.594 1.017zm-52.224-83.611c7.765-8.853 20.638-15.558 31.346-15.997 1.347 12.428-3.593 24.985-11.076 33.93-7.344 9.013-19.499 16.054-31.377 15.063-1.598-12.218 4.347-25.035 11.107-33.07v.074z"/></svg>
             </div>
         </div>
-        <div class="rating-item">
-            <div class="rating-content">
-                <div class="rating-score">5.0/5</div>
-                <div class="rating-stars">★★★★★</div>
-            </div>
-            <div class="store-logo">
-                <svg viewBox="0 0 24 24">
-                    <defs>
-                        <linearGradient id="ratingPlayGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#00C4FF"/>
-                            <stop offset="100%" style="stop-color:#00F0FF"/>
-                        </linearGradient>
-                        <linearGradient id="ratingPlayGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#00F076"/>
-                            <stop offset="100%" style="stop-color:#00C4FF"/>
-                        </linearGradient>
-                        <linearGradient id="ratingPlayGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#FF3A44"/>
-                            <stop offset="100%" style="stop-color:#FF6B4A"/>
-                        </linearGradient>
-                        <linearGradient id="ratingPlayGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#FFD500"/>
-                            <stop offset="100%" style="stop-color:#FF9100"/>
-                        </linearGradient>
-                    </defs>
-                    <path fill="url(#ratingPlayGradient2)" d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5Z"/>
-                    <path fill="url(#ratingPlayGradient4)" d="M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12Z"/>
-                    <path fill="url(#ratingPlayGradient1)" d="M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81Z"/>
-                    <path fill="url(#ratingPlayGradient3)" d="M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+        <div class="rating-block right">
+            <div class="store-icon-wrapper">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#fff" d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12 3.84 21.85C3.34 21.6 3 21.09 3 20.5zM16.81 15.12 6.05 21.34l8.49-8.49 2.27 2.27zM20.16 10.81c.34.27.59.69.59 1.19s-.25.92-.59 1.19l-2.27 1.31-2.5-2.5 2.5-2.5 2.27 1.31zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
                 </svg>
+            </div>
+            <div class="rating-text-group">
+                <div class="rating-score">5.0<span>/5</span></div>
+                <div class="rating-stars">★★★★★</div>
+                <div class="review-count">2,400+ Reviews</div>
             </div>
         </div>
     </section>
-
-    <!-- Reviews Section -->
     <section class="reviews">
         <div class="reviews-grid">
             <div class="review-card">
@@ -644,7 +672,6 @@
         </div>
     </section>
 
-    <!-- Features List -->
     <section class="features-list" id="features">
         <div class="features-list-grid">
             <div class="feature-item">
@@ -763,7 +790,6 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta">
         <h2>Start Brewing Your Productivity</h2>
         <p>Join thousands of focused individuals who transformed their work habits.</p>
@@ -792,7 +818,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
