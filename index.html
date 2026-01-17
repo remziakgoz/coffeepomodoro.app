@@ -1,3 +1,10 @@
+Harika bir karar. Yorum sayısı azken sadece yüksek puanı göstermek ("Social Proof" açısından) çok daha güçlü bir stratejidir.
+
+Aşağıda, konuştuğumuz **tüm iyileştirmeleri içeren** (Review kartlarının outline olması, Hero başlığının kalınlaşması ve Ratings kısmının sadeleştirilmiş hali) **tam kod** yer alıyor.
+
+Bunu direkt `index.html` olarak kaydedip kullanabilirsin.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +45,7 @@
             overflow-x: hidden;
         }
         
-        /* Navigation (Aynı kalacak) */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -93,7 +100,7 @@
             color: #fff;
         }
         
-        /* Hero Section (Aynı kalacak) */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -101,15 +108,16 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 7rem 2rem 3rem;
+            padding: 8rem 2rem 4rem; /* Üst boşluk biraz artırıldı */
             background: radial-gradient(ellipse at top, #1a1207 0%, #0a0a0a 50%);
         }
         
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: clamp(3rem, 7vw, 4.5rem); /* Font boyutu büyütüldü */
+            font-weight: 900; /* Font kalınlaştırıldı (HabitKit Style) */
+            letter-spacing: -0.03em; /* Harfler sıkılaştırıldı */
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
         
         .hero h1 .highlight {
@@ -120,20 +128,20 @@
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #888;
-            max-width: 580px;
-            margin-bottom: 2rem;
-            line-height: 1.5;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
         }
         
-        /* Download Buttons (Aynı kalacak) */
+        /* Download Buttons */
         .download-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         
         .download-btn {
@@ -143,7 +151,7 @@
             padding: 1rem 1.75rem;
             background: transparent;
             border: 1px solid #fff;
-            border-radius: 12px;
+            border-radius: 14px;
             text-decoration: none;
             color: #fff;
             transition: all 0.3s;
@@ -155,11 +163,6 @@
         }
         
         .download-btn svg {
-            width: 28px;
-            height: 28px;
-        }
-        
-        .download-btn .play-icon {
             width: 28px;
             height: 28px;
         }
@@ -180,7 +183,7 @@
             font-weight: 600;
         }
         
-        /* App Mockups Gallery (Aynı kalacak) */
+        /* App Mockups Gallery */
         .mockups-gallery {
             display: flex;
             gap: 1.5rem;
@@ -190,6 +193,13 @@
             max-width: 1400px;
             margin: 0 auto;
             overflow-x: auto;
+            /* Scrollbar gizleme */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+        
+        .mockups-gallery::-webkit-scrollbar { 
+            display: none; 
         }
         
         .mockup-item {
@@ -202,6 +212,7 @@
             width: 100%;
             height: auto;
             border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Gölge eklendi */
             transition: transform 0.3s ease-out;
         }
         
@@ -210,133 +221,125 @@
             z-index: 10;
         }
         
-        /* --- Ratings Section - YENİ TASARIM (HabitKit Stili) --- */
+        /* --- Ratings Section (NEW - Clean Style) --- */
         .ratings {
             display: flex;
-            gap: 4rem; /* Bloklar arasındaki boşluğu açtık */
+            gap: 5rem; /* Bloklar arası boşluk */
             justify-content: center;
             align-items: center;
-            padding: 3rem 2rem 2rem; /* Üst boşluğu biraz artırdık */
+            padding: 4rem 2rem 2rem;
             flex-wrap: wrap;
         }
 
-        /* Her bir mağaza puan bloğu (sol ve sağ) */
         .rating-block {
             display: flex;
             align-items: center;
-            gap: 1rem; /* Metin grubu ile ikon arasındaki boşluk */
+            gap: 1rem; 
         }
 
-        /* Metinlerin (puan, yıldız, yorum sayısı) bulunduğu grup */
         .rating-text-group {
             display: flex;
             flex-direction: column;
+            justify-content: center;
         }
 
-        /* Sol blok (App Store) metinlerini sağa hizala */
+        /* App Store (Sol) hizalama */
         .rating-block.left .rating-text-group {
             align-items: flex-end;
             text-align: right;
         }
 
-        /* Sağ blok (Google Play) metinlerini sola hizala */
+        /* Google Play (Sağ) hizalama */
         .rating-block.right .rating-text-group {
             align-items: flex-start;
             text-align: left;
         }
         
-        /* Puan (örn: 4.7/5) - Kalın ve büyük */
         .rating-score {
-            font-size: 1.1rem;
-            font-weight: 800; /* Fontu iyice kalınlaştırdık */
+            font-size: 1.35rem; /* Büyük ve okunaklı */
+            font-weight: 800; /* Ekstra kalın */
             color: #fff;
-            line-height: 1.2;
+            line-height: 1;
+            margin-bottom: 0.3rem;
         }
         
-        /* Puanın '/5' kısmı biraz daha ince olabilir */
         .rating-score span {
             font-weight: 600;
-            color: #ccc;
-            font-size: 0.9rem;
+            color: #666; /* "/5" kısmı daha silik */
+            font-size: 1rem;
         }
         
-        /* Yıldızlar */
         .rating-stars {
             color: #FFD700;
-            font-size: 1.2rem;
-            letter-spacing: 0; /* Harf aralığını sıfırladık, daha sıkı dursun */
-            margin: 0.1rem 0;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
         
-        /* İnceleme Sayısı (örn: 1,700+ Reviews) */
-        .review-count {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #fff;
-            text-decoration: underline; /* Altı çizili */
-            text-underline-offset: 3px;
-            cursor: pointer; /* Tıklanabilir hissi verelim */
-        }
-        
-        /* Mağaza İkonunun Kapsayıcısı */
         .store-icon-wrapper {
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
         .store-icon-wrapper svg {
-            width: 36px; /* İkonu biraz büyüttük */
-            height: 36px;
-            /* Google Play ikonu için beyaz renk */
+            width: 100%;
+            height: 100%;
             fill: #fff;
         }
-        /* -------------------------------------------------- */
-        
-        /* Reviews Section (Aynı kalacak) */
+
+        /* Reviews Section (Outline Style) */
         .reviews {
-            padding: 1.5rem 2rem 4rem;
+            padding: 2rem 2rem 5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .reviews-grid {
-            display: grid;<br>            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
         
+        /* Kartların yeni stili: Arka plan şeffaf, ince border */
         .review-card {
-            background: #141414;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.02);
         }
         
         .review-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
         
         .review-title {
             font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: underline;
-            text-decoration-color: #333;
-            text-underline-offset: 4px;
+            font-weight: 700;
+            color: #fff;
         }
         
         .review-stars {
             color: #FFD700;
+            font-size: 1rem;
         }
         
         .review-text {
-            color: #aaa;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+            color: #bbb;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
         
         .review-author {
@@ -346,11 +349,12 @@
             justify-content: flex-end;
             font-size: 0.85rem;
             color: #666;
+            font-weight: 500;
         }
         
-        /* Features List (Aynı kalacak) */
+        /* Features List */
         .features-list {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -358,20 +362,20 @@
         .features-list-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 3rem; /* Boşluk artırıldı */
         }
         
         .feature-item {
             display: flex;
-            gap: 1rem;
+            gap: 1.25rem;
             align-items: flex-start;
         }
         
         .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #D2691E22, #8B451322);
-            border-radius: 12px;
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, rgba(210, 105, 30, 0.15), rgba(139, 69, 19, 0.15));
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -379,43 +383,47 @@
         }
         
         .feature-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             color: #D2691E;
         }
         
         .feature-content h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
         }
         
         .feature-content p {
-            font-size: 0.875rem;
+            font-size: 0.95rem;
             color: #888;
+            line-height: 1.6;
         }
         
-        /* CTA Section (Aynı kalacak) */
+        /* CTA Section */
         .cta {
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             text-align: center;
-            background: radial-gradient(ellipse at bottom, #1a1207 0%, #0a0a0a 50%);
+            background: radial-gradient(ellipse at bottom, #1a1207 0%, #0a0a0a 60%);
         }
         
         .cta h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
             margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
         
         .cta p {
             color: #888;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
         }
         
-        /* Footer (Aynı kalacak) */
+        /* Footer - Centered (HabitKit Style) */
         footer {
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             border-top: 1px solid #1a1a1a;
         }
         
@@ -423,16 +431,17 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
+            flex-direction: column;
+            align-items: center; /* Ortala */
+            gap: 1.5rem;
+            text-align: center;
         }
         
         .footer-links {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .footer-links a {
@@ -451,91 +460,32 @@
             font-size: 0.85rem;
         }
         
-        /* Responsive (Güncellendi) */
+        /* Responsive Fixes */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem;
-            }
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
             
-            .nav-links {
-                display: none;
-            }
+            .hero { padding: 6rem 1.5rem 2rem; }
+            .hero h1 { font-size: 2.25rem; }
             
-            .hero {
-                padding: 6rem 1.5rem 2rem;
-            }
+            .download-buttons { flex-direction: column; align-items: center; }
+            .download-btn { width: 100%; max-width: 280px; justify-content: center; }
             
-            .hero h1 {
-                font-size: 2rem;
-            }
+            .mockups-gallery { gap: 1rem; padding: 1rem 0.5rem; }
+            .mockup-item { width: 130px; }
             
-            .hero p {
-                font-size: 1rem;
-            }
+            /* Ratings Mobile */
+            .ratings { flex-direction: column; gap: 2rem; text-align: center; }
+            .rating-block { justify-content: center; }
             
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .download-btn {
-                width: 100%;
-                max-width: 250px;
-                justify-content: center;
-            }
-            
-            .mockups-gallery {
-                gap: 1rem;
-                padding: 1rem 0.5rem;
-            }
-            
-            .mockup-item {
-                width: 130px;
-            }
-            
-            .mockup-item:hover {
-                transform: scale(1.05);
-            }
-            
-            /* Ratings bölümü mobilde alt alta ve ortalı olsun */
-            .ratings {
-                flex-direction: column;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .rating-block {
-                justify-content: center; /* İçeriği ortala */
-            }
-
-            /* Mobilde her iki bloğun metnini de merkeze hizala */
             .rating-block.left .rating-text-group,
             .rating-block.right .rating-text-group {
                 align-items: center;
                 text-align: center;
             }
-
-            /* Mobilde ikonların yerini değiştirelim: Metnin üstüne alalım */
-            .rating-block.left {
-                flex-direction: column-reverse; /* İkonu üste al */
-                gap: 0.5rem;
-            }
             
-            .rating-block.right {
-                flex-direction: column; /* İkonu üste al */
-                gap: 0.5rem;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .mockup-item {
-                width: 110px;
-            }
+            .rating-block.left { flex-direction: column-reverse; gap: 0.5rem; }
+            .rating-block.right { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -598,24 +548,12 @@
         </div>
         
         <div class="mockups-gallery">
-            <div class="mockup-item">
-                <img src="images/1.png" alt="CoffeePomodoro Screenshot 1">
-            </div>
-            <div class="mockup-item">
-                <img src="images/2.png" alt="CoffeePomodoro Screenshot 2">
-            </div>
-            <div class="mockup-item">
-                <img src="images/3.png" alt="CoffeePomodoro Screenshot 3">
-            </div>
-            <div class="mockup-item">
-                <img src="images/4.png" alt="CoffeePomodoro Screenshot 4">
-            </div>
-            <div class="mockup-item">
-                <img src="images/5.png" alt="CoffeePomodoro Screenshot 5">
-            </div>
-            <div class="mockup-item">
-                <img src="images/6.png" alt="CoffeePomodoro Screenshot 6">
-            </div>
+            <div class="mockup-item"><img src="images/1.png" alt="CoffeePomodoro 1"></div>
+            <div class="mockup-item"><img src="images/2.png" alt="CoffeePomodoro 2"></div>
+            <div class="mockup-item"><img src="images/3.png" alt="CoffeePomodoro 3"></div>
+            <div class="mockup-item"><img src="images/4.png" alt="CoffeePomodoro 4"></div>
+            <div class="mockup-item"><img src="images/5.png" alt="CoffeePomodoro 5"></div>
+            <div class="mockup-item"><img src="images/6.png" alt="CoffeePomodoro 6"></div>
         </div>
     </section>
 
@@ -624,7 +562,6 @@
             <div class="rating-text-group">
                 <div class="rating-score">4.7<span>/5</span></div>
                 <div class="rating-stars">★★★★★</div>
-                <div class="review-count">1,200+ Reviews</div>
             </div>
             <div class="store-icon-wrapper">
                 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M256 23.001C127.465 23.001 23 127.464 23 256c0 128.535 104.465 232.999 233 232.999 128.535 0 233-104.464 233-232.999 0-128.536-104.465-232.999-233-232.999zm114.104 284.227c-2.384 3.763-14.543 25.17-29.243 46.434-8.853 12.8-18.043 25.558-32.487 25.828-14.172.27-18.74-8.393-34.992-8.393-16.249 0-21.359 8.123-34.704 8.654-13.9.56-24.488-14.054-33.398-26.918-18.207-26.261-32.132-74.723-13.461-107.18 9.271-16.141 25.835-26.374 43.836-26.643 13.622-.25 26.511 9.19 34.861 9.19 8.342 0 24.016-11.351 40.503-9.685 6.896.281 26.251 2.782 38.68 21.022-1.006.62-23.088 13.527-22.868 40.526.253 32.162 28.254 42.911 28.533 43.024-.228.721-4.447 15.347-14.666 30.124l-.594 1.017zm-52.224-83.611c7.765-8.853 20.638-15.558 31.346-15.997 1.347 12.428-3.593 24.985-11.076 33.93-7.344 9.013-19.499 16.054-31.377 15.063-1.598-12.218 4.347-25.035 11.107-33.07v.074z"/></svg>
@@ -639,10 +576,10 @@
             <div class="rating-text-group">
                 <div class="rating-score">5.0<span>/5</span></div>
                 <div class="rating-stars">★★★★★</div>
-                <div class="review-count">2,400+ Reviews</div>
             </div>
         </div>
     </section>
+
     <section class="reviews">
         <div class="reviews-grid">
             <div class="review-card">
@@ -832,3 +769,5 @@
     </footer>
 </body>
 </html>
+
+```
