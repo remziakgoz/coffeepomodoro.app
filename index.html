@@ -1106,6 +1106,9 @@
         function closeLightbox() {
             overlay.classList.remove('active');
             document.body.style.overflow = '';
+            // Inline style'ları temizle, CSS class'ının kontrolü geri alsın
+            lbImg.style.opacity = '';
+            lbImg.style.transform = '';
             setTimeout(() => { lbImg.src = ''; }, 400);
         }
 
