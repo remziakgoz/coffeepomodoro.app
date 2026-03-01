@@ -192,7 +192,7 @@
             font-weight: 600;
         }
         
-/* App Mockups Gallery */
+        /* App Mockups Gallery */
         .mockups-gallery {
             display: flex;
             gap: 2rem;
@@ -221,53 +221,139 @@
             width: 100%;
             height: auto;
             border-radius: 24px;
-            
-            /* Varsayılan olarak çok hafif bir gölge */
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            
-            /* Geçiş efekti parıltı için de geçerli olsun */
             transition: all 0.3s ease-out;
+            cursor: zoom-in;
         }
         
-        /* Hover durumunda telefon biraz yukarı kalksın */
         .mockup-item:hover {
             transform: translateY(-8px) scale(1.02);
             z-index: 10;
         }
 
-        /* --- İNCE PARILTI EFEKTLERİ (Sadece çerçeve etrafında) --- */
-        /* Hover durumunda parıltının artması için :hover img seçicisini kullanıyoruz */
-
-        /* 1. Telefon (Kırmızı/Pembe) */
         .mockup-item:nth-child(1):hover img {
             box-shadow: 0 0 20px 2px rgba(215, 114, 109, 0.5);
         }
 
-        /* 2. Telefon (Yeşil/Teal) */
         .mockup-item:nth-child(2):hover img {
             box-shadow: 0 0 20px 2px rgba(118, 163, 160, 0.5);
         }
 
-        /* 3. Telefon (Kahverengi) */
         .mockup-item:nth-child(3):hover img {
             box-shadow: 0 0 20px 2px rgba(196, 143, 94, 0.5);
         }
 
-        /* 4. Telefon (Mor) */
         .mockup-item:nth-child(4):hover img {
             box-shadow: 0 0 20px 2px rgba(150, 100, 255, 0.5);
         }
 
-        /* 5. Telefon (Koyu Kahve) */
         .mockup-item:nth-child(5):hover img {
             box-shadow: 0 0 20px 2px rgba(140, 80, 80, 0.5);
         }
 
-        /* 6. Telefon (Mavi) */
         .mockup-item:nth-child(6):hover img {
             box-shadow: 0 0 20px 2px rgba(132, 196, 235, 0.5);
         }
         
+        /* Lightbox */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            pointer-events: none;
+            transition: background 0.35s ease;
+        }
+
+        .lightbox-overlay.active {
+            background: rgba(0, 0, 0, 0.88);
+            pointer-events: all;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 24px;
+            object-fit: contain;
+            transform: scale(0.4);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
+        }
+
+        .lightbox-overlay.active img {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.15s, background 0.2s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-close {
+            opacity: 1;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Lightbox Navigation Arrows */
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.15s, background 0.2s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-arrow {
+            opacity: 1;
+        }
+
+        .lightbox-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-arrow.prev {
+            left: 1.5rem;
+        }
+
+        .lightbox-arrow.next {
+            right: 1.5rem;
+        }
+
         /* Ratings Section */
         .ratings {
             display: flex;
@@ -285,7 +371,6 @@
             gap: 0.75rem; 
         }
 
-        /* --- SOL VE SAĞ BLOK AYARLARI --- */
         .rating-block.left {
             text-align: right;
         }
@@ -300,7 +385,6 @@
             align-items: flex-start;
         }
 
-        /* --- ORTAK METİN STİLLERİ --- */
         .rating-text-group {
             display: flex;
             flex-direction: column;
@@ -320,7 +404,6 @@
             color: #bbb;
         }
 
-        /* --- YILDIZ SİSTEMİ --- */
         .stars {
             display: inline-block;
             font-size: 1rem; 
@@ -342,7 +425,6 @@
             overflow: hidden;
         }
 
-        /* --- İKON STİLLERİ --- */
         .store-icon {
             width: 44px;
             height: 44px;
@@ -358,12 +440,9 @@
             fill: #fff;
         }
 
-        /* --- YENİ APP STORE (PNG) LOGOSU İÇİN ÖZEL AYAR --- */
         .store-icon.apple-new {
             width: 68px;  
             height: 68px;
-            
-            /* Resim ayarları */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -373,7 +452,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            /* Resim siyahsa veya renkliyse BEYAZ yapmak için filtre: */
             filter: brightness(0) invert(1);
         }
 
@@ -558,7 +636,7 @@
             font-size: 0.85rem;
         }
         
-/* Responsive Fixes */
+        /* Responsive Fixes */
         @media (max-width: 900px) {
             .reviews-grid {
                 grid-template-columns: 1fr;
@@ -575,7 +653,7 @@
             }
 
             .social-links {
-                gap: 0.5rem; /* Normalde 1.5rem idi, bunu 0.8 veya 0.5 yaparak iyice yaklaştırabilirsin */
+                gap: 0.5rem;
             }
             
             .hero { padding: 6rem 1.5rem 2rem; }
@@ -584,29 +662,25 @@
             .download-buttons { flex-direction: column; align-items: center; }
             .download-btn { width: 100%; max-width: 300px; justify-content: center; }
             
-            /* --- MOBİL GALERİ DÜZENLEMESİ --- */
             .mockups-gallery { 
                 gap: 1.5rem; 
-                padding: 3rem 0.5rem 1rem; /* Altına biraz boşluk bıraktık */
-                justify-content: center; /* Resimleri ortala */
-                overflow: hidden; /* Yanlara taşmayı engelle */
+                padding: 3rem 0.5rem 1rem;
+                justify-content: center;
+                overflow: hidden;
             }
             
             .mockup-item { 
-                width: 145px; /* Mobilde telefonları ideal boyuta getirdik */
+                width: 145px;
             }
 
-            /* 3. resim ve sonrasını (3,4,5,6) mobilde gizle */
             .mockup-item:nth-child(n+3) {
                 display: none;
             }
-            /* -------------------------------- */
             
-/* --- RATINGS (PUANLAR) - LOGOLAR ORTADA --- */
             .ratings { 
-                flex-direction: row; /* Yan yana diz */
-                flex-wrap: wrap;     /* Sığmazsa aşağı kaydır */
-                gap: 1rem;           /* Aralarındaki boşluk */
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
                 justify-content: center;
             }
             
@@ -615,35 +689,44 @@
                 min-width: auto; 
             }
             
-            /* ORTAK METİN AYARLARI */
             .rating-block.left .rating-text-group,
             .rating-block.right .rating-text-group {
-                /* Metinleri dikeyde ortala */
                 justify-content: center;
             }
             
-            /* --- SOL BLOK (APPLE) --- */
-            /* HTML sırası: [Yazı] [İkon] */
             .rating-block.left { 
-                flex-direction: row; /* Normal sıralama kalsın (Yazı -> İkon) */
+                flex-direction: row;
                 gap: 0.5rem; 
-                text-align: right; /* Yazıyı sağa (ikona doğru) yasla */
+                text-align: right;
             }
             
             .rating-block.left .rating-text-group {
-                align-items: flex-end; /* Yıldızları sağa yasla */
+                align-items: flex-end;
             }
 
-            /* --- SAĞ BLOK (GOOGLE) --- */
-            /* HTML sırası: [İkon] [Yazı] */
             .rating-block.right { 
-                flex-direction: row; /* Normal sıralama (İkon -> Yazı) */
+                flex-direction: row;
                 gap: 0.5rem; 
-                text-align: left; /* Yazıyı sola (ikona doğru) yasla */
+                text-align: left;
             }
             
             .rating-block.right .rating-text-group {
-                align-items: flex-start; /* Yıldızları sola yasla */
+                align-items: flex-start;
+            }
+
+            /* Lightbox mobile */
+            .lightbox-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .lightbox-arrow.prev {
+                left: 0.75rem;
+            }
+
+            .lightbox-arrow.next {
+                right: 0.75rem;
             }
         }
     </style>
@@ -964,11 +1047,120 @@
             <div class="footer-links">
                 <a href="mailto:coffeepomodoro@proton.me">Contact</a>
                 <a href="https://remziakgoz.github.io/coffeepomodoro-privacy/privacy-policy.html">Privacy Policy</a>
-                </div>
+            </div>
             <div class="copyright">
                 Made with ❤️ and ☕️ by © Remzi Akgöz 2025
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox -->
+    <script>
+    (function() {
+        // Tüm mockup resimlerini topla
+        const allImages = Array.from(document.querySelectorAll('.mockup-item img'));
+        let currentIndex = 0;
+
+        // Overlay oluştur
+        const overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = `
+            <button class="lightbox-close">✕</button>
+            <button class="lightbox-arrow prev">‹</button>
+            <img src="" alt="">
+            <button class="lightbox-arrow next">›</button>
+        `;
+        document.body.appendChild(overlay);
+
+        const lbImg = overlay.querySelector('img');
+        const lbClose = overlay.querySelector('.lightbox-close');
+        const prevBtn = overlay.querySelector('.lightbox-arrow.prev');
+        const nextBtn = overlay.querySelector('.lightbox-arrow.next');
+
+        function showImage(index) {
+            currentIndex = index;
+            // Geçiş efekti: önce fade out, sonra fade in
+            lbImg.style.opacity = '0';
+            lbImg.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                lbImg.src = allImages[currentIndex].src;
+                lbImg.alt = allImages[currentIndex].alt || '';
+                // Bir frame bekle
+                requestAnimationFrame(() => {
+                    lbImg.style.opacity = '1';
+                    lbImg.style.transform = 'scale(1)';
+                });
+            }, overlay.classList.contains('active') ? 150 : 0);
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lbImg.src = allImages[currentIndex].src;
+            lbImg.alt = allImages[currentIndex].alt || '';
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => {
+                overlay.classList.add('active');
+            });
+        }
+
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => { lbImg.src = ''; }, 400);
+        }
+
+        function navigate(direction) {
+            let newIndex = currentIndex + direction;
+            if (newIndex < 0) newIndex = allImages.length - 1;
+            if (newIndex >= allImages.length) newIndex = 0;
+            showImage(newIndex);
+        }
+
+        // Mockup resimlerine tıklama
+        allImages.forEach((img, index) => {
+            img.addEventListener('click', () => openLightbox(index));
+        });
+
+        // Ok butonları
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigate(-1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigate(1);
+        });
+
+        // Overlay'e tıklayınca kapat (resme ve butonlara değil)
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeLightbox();
+        });
+
+        // Kapat butonu
+        lbClose.addEventListener('click', closeLightbox);
+
+        // Klavye desteği
+        document.addEventListener('keydown', (e) => {
+            if (!overlay.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigate(-1);
+            if (e.key === 'ArrowRight') navigate(1);
+        });
+
+        // Swipe desteği (mobil)
+        let touchStartX = 0;
+        overlay.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        overlay.addEventListener('touchend', (e) => {
+            const diff = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(diff) > 50) {
+                navigate(diff > 0 ? -1 : 1);
+            }
+        }, { passive: true });
+    })();
+    </script>
 </body>
 </html>
