@@ -118,7 +118,40 @@
             justify-content: center;
             text-align: center;
             padding: 9rem 2rem 4rem;
-            background: radial-gradient(ellipse at top, #1a1207 0%, #0a0a0a 50%);
+            position: relative;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .hero-video.loaded {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1;
+        }
+
+        .hero > *:not(.hero-video):not(.hero-overlay) {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
@@ -656,7 +689,7 @@
                 gap: 0.5rem;
             }
             
-            .hero { padding: 6rem 1.5rem 2rem; }
+            .hero { padding: 6rem 1.5rem 2rem; min-height: 100vh; }
             .hero h1 { font-size: 2.25rem; }
             
             .download-buttons { flex-direction: column; align-items: center; }
@@ -756,6 +789,11 @@
     </nav>
 
     <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="videos/promo.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
         <h1><span class="highlight">Brew Your Productivity</span><br>One Pomodoro at a Time</h1>
         <p>Transform your focus sessions into a rewarding coffee journey.<br> Track your pomodoros, level up through coffee ranks, and stay motivated with beautiful animations.</p>
         
@@ -1054,9 +1092,21 @@
         </div>
     </footer>
 
-    <!-- Lightbox -->
+    <!-- Lightbox & Video -->
     <script>
     (function() {
+        // Video fade-in
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+            heroVideo.addEventListener('canplaythrough', () => {
+                heroVideo.classList.add('loaded');
+            });
+            // Zaten yüklenmişse
+            if (heroVideo.readyState >= 4) {
+                heroVideo.classList.add('loaded');
+            }
+        }
+
         // Tüm mockup resimlerini topla
         const allImages = Array.from(document.querySelectorAll('.mockup-item img'));
         let currentIndex = 0;
