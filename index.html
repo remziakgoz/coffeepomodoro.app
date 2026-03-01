@@ -123,7 +123,8 @@
             background: #0a0a0a;
         }
 
-        .hero-video {
+        /* Blurred background copy of video */
+        .hero-video-bg {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -133,6 +134,25 @@
             height: auto;
             transform: translate(-50%, -50%);
             object-fit: cover;
+            z-index: 0;
+            filter: blur(40px) brightness(0.35) saturate(1.2);
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .hero-video-bg.loaded {
+            opacity: 1;
+        }
+
+        /* Main video (fully visible) */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
             z-index: 0;
             opacity: 0;
             transition: opacity 1.2s ease;
@@ -145,13 +165,103 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
 
-        .hero > *:not(.hero-video):not(.hero-overlay) {
+        .hero > *:not(.hero-video):not(.hero-video-bg):not(.hero-overlay) {
             position: relative;
             z-index: 2;
+        }
+
+        /* Watch Video Button (mobile only) */
+        .watch-btn {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 2rem;
+            background: rgba(210, 105, 30, 0.12);
+            border: 1px solid rgba(210, 105, 30, 0.35);
+            border-radius: 50px;
+            color: #F4A460;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .watch-btn:hover {
+            background: rgba(210, 105, 30, 0.22);
+            border-color: rgba(210, 105, 30, 0.55);
+        }
+
+        .watch-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Video Modal (for mobile watch button) */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            transition: background 0.35s ease;
+        }
+
+        .video-modal.active {
+            background: rgba(0, 0, 0, 0.92);
+            pointer-events: all;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-modal video {
+            max-width: 92vw;
+            max-height: 85vh;
+            border-radius: 16px;
+            transform: scale(0.5);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+        }
+
+        .video-modal.active video {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.15s, background 0.2s ease;
+            z-index: 1;
+        }
+
+        .video-modal.active .video-modal-close {
+            opacity: 1;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(255, 255, 255, 0.25);
         }
         
         .hero h1 {
@@ -561,6 +671,7 @@
             font-weight: 600;
         }
         
+        
         /* Features List */
         .features-list {
             padding: 2rem 2rem;
@@ -689,8 +800,16 @@
                 gap: 0.5rem;
             }
             
-            .hero { padding: 6rem 1.5rem 2rem; min-height: 100vh; }
+            .hero { padding: 6rem 1.5rem 2rem; background: radial-gradient(ellipse at top, #1a1207 0%, #0a0a0a 50%); }
             .hero h1 { font-size: 2.25rem; }
+
+            .hero-video, .hero-video-bg, .hero-overlay {
+                display: none;
+            }
+
+            .watch-btn {
+                display: flex;
+            }
             
             .download-buttons { flex-direction: column; align-items: center; }
             .download-btn { width: 100%; max-width: 300px; justify-content: center; }
@@ -781,7 +900,7 @@
                 <a href="https://x.com/remziakgoz_dev" target="_blank" aria-label="X (Twitter)">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM367.6 433h39.1L151.1 88h-42L367.6 433z"/></svg>
                 </a>
-                <a href="mailto:coffeepomodoro@proton.me" aria-label="Email">
+                <a href="/cdn-cgi/l/email-protection#c9aaa6afafacacb9a6a4a6ada6bba689b9bba6bda6a7e7a4ac" aria-label="Email">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
                 </a>
             </div>
@@ -789,6 +908,9 @@
     </nav>
 
     <section class="hero">
+        <video class="hero-video-bg" autoplay muted loop playsinline>
+            <source src="videos/promo.mp4" type="video/mp4">
+        </video>
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="videos/promo.mp4" type="video/mp4">
         </video>
@@ -796,6 +918,11 @@
 
         <h1><span class="highlight">Brew Your Productivity</span><br>One Pomodoro at a Time</h1>
         <p>Transform your focus sessions into a rewarding coffee journey.<br> Track your pomodoros, level up through coffee ranks, and stay motivated with beautiful animations.</p>
+        
+        <button class="watch-btn" id="watchBtn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Watch Promo
+        </button>
         
         <div class="download-buttons">
             <a href="https://apps.apple.com/app/pomodoro-timer-coffeepomodoro/id6756186616" class="download-btn" target="_blank">
@@ -1083,7 +1210,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="mailto:coffeepomodoro@proton.me">Contact</a>
+                <a href="/cdn-cgi/l/email-protection#01626e67676464716e6c6e656e736e4171736e756e6f2f6c64">Contact</a>
                 <a href="https://remziakgoz.github.io/coffeepomodoro-privacy/privacy-policy.html">Privacy Policy</a>
             </div>
             <div class="copyright">
@@ -1095,16 +1222,43 @@
     <!-- Lightbox & Video -->
     <script>
     (function() {
-        // Video fade-in
-        const heroVideo = document.querySelector('.hero-video');
-        if (heroVideo) {
-            heroVideo.addEventListener('canplaythrough', () => {
-                heroVideo.classList.add('loaded');
+        // Video fade-in (desktop background)
+        document.querySelectorAll('.hero-video, .hero-video-bg').forEach(vid => {
+            vid.addEventListener('canplaythrough', () => vid.classList.add('loaded'));
+            if (vid.readyState >= 4) vid.classList.add('loaded');
+        });
+
+        // Watch button video modal (mobile)
+        const watchBtn = document.getElementById('watchBtn');
+        if (watchBtn) {
+            const videoModal = document.createElement('div');
+            videoModal.className = 'video-modal';
+            videoModal.innerHTML = '<button class="video-modal-close">✕</button><video controls playsinline><source src="videos/promo.mp4" type="video/mp4"></video>';
+            document.body.appendChild(videoModal);
+
+            const modalVideo = videoModal.querySelector('video');
+            const modalClose = videoModal.querySelector('.video-modal-close');
+
+            watchBtn.addEventListener('click', () => {
+                document.body.style.overflow = 'hidden';
+                requestAnimationFrame(() => videoModal.classList.add('active'));
+                modalVideo.currentTime = 0;
+                modalVideo.play();
             });
-            // Zaten yüklenmişse
-            if (heroVideo.readyState >= 4) {
-                heroVideo.classList.add('loaded');
+
+            function closeVideoModal() {
+                videoModal.classList.remove('active');
+                modalVideo.pause();
+                document.body.style.overflow = '';
             }
+
+            modalClose.addEventListener('click', closeVideoModal);
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) closeVideoModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && videoModal.classList.contains('active')) closeVideoModal();
+            });
         }
 
         // Tüm mockup resimlerini topla
@@ -1208,12 +1362,4 @@
         }, { passive: true });
 
         overlay.addEventListener('touchend', (e) => {
-            const diff = e.changedTouches[0].screenX - touchStartX;
-            if (Math.abs(diff) > 50) {
-                navigate(diff > 0 ? -1 : 1);
-            }
-        }, { passive: true });
-    })();
-    </script>
-</body>
-</html>
+            const diff = e.changedT
