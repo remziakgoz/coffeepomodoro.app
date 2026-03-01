@@ -118,7 +118,40 @@
             justify-content: center;
             text-align: center;
             padding: 9rem 2rem 4rem;
-            background: radial-gradient(ellipse at top, #1a1207 0%, #0a0a0a 50%);
+            position: relative;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .hero-video.loaded {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1;
+        }
+
+        .hero > *:not(.hero-video):not(.hero-overlay) {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
@@ -528,48 +561,6 @@
             font-weight: 600;
         }
         
-        /* Video Background Wrapper */
-        .video-bg-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 1.2s ease;
-        }
-
-        .video-bg.loaded {
-            opacity: 1;
-        }
-
-        .video-bg-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1;
-        }
-
-        .video-bg-wrapper .features-list,
-        .video-bg-wrapper .cta {
-            position: relative;
-            z-index: 2;
-        }
-
-        .video-bg-wrapper .cta {
-            background: transparent;
-        }
-
         /* Features List */
         .features-list {
             padding: 2rem 2rem;
@@ -698,7 +689,7 @@
                 gap: 0.5rem;
             }
             
-            .hero { padding: 6rem 1.5rem 2rem; }
+            .hero { padding: 6rem 1.5rem 2rem; min-height: 100vh; }
             .hero h1 { font-size: 2.25rem; }
             
             .download-buttons { flex-direction: column; align-items: center; }
@@ -798,6 +789,11 @@
     </nav>
 
     <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="videos/promo.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
         <h1><span class="highlight">Brew Your Productivity</span><br>One Pomodoro at a Time</h1>
         <p>Transform your focus sessions into a rewarding coffee journey.<br> Track your pomodoros, level up through coffee ranks, and stay motivated with beautiful animations.</p>
         
@@ -936,12 +932,6 @@
             </div>
         </div>
     </section>
-
-    <div class="video-bg-wrapper">
-        <video class="video-bg" autoplay muted loop playsinline>
-            <source src="videos/promo.mp4" type="video/mp4">
-        </video>
-        <div class="video-bg-overlay"></div>
 
     <section class="features-list" id="features">
         <div class="features-list-grid">
@@ -1089,7 +1079,6 @@
             </a>
         </div>
     </section>
-    </div><!-- /video-bg-wrapper -->
 
     <footer>
         <div class="footer-content">
@@ -1107,13 +1096,14 @@
     <script>
     (function() {
         // Video fade-in
-        const sectionVideo = document.querySelector('.video-bg');
-        if (sectionVideo) {
-            sectionVideo.addEventListener('canplaythrough', () => {
-                sectionVideo.classList.add('loaded');
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+            heroVideo.addEventListener('canplaythrough', () => {
+                heroVideo.classList.add('loaded');
             });
-            if (sectionVideo.readyState >= 4) {
-                sectionVideo.classList.add('loaded');
+            // Zaten yüklenmişse
+            if (heroVideo.readyState >= 4) {
+                heroVideo.classList.add('loaded');
             }
         }
 
