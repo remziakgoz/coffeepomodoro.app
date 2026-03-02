@@ -162,11 +162,19 @@
             opacity: 1;
         }
 
-        .hero-overlay {
+       .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
+            /* 1. Katman: Alt tarafta (Ratings bölümüne doğru) sayfa rengine yumuşak erime.
+              2. Katman: Sağ ve sol kenarlardan ortaya doğru yumuşak erime.
+              3. Katman: Genel %50 siyah karartma (orijinal kodundaki yapı).
+              Not: rgba(10, 10, 10) senin sitenin arka plan rengi olan #0a0a0a'dır.
+            */
+            background: 
+                linear-gradient(to bottom, rgba(10, 10, 10, 0) 65%, rgba(10, 10, 10, 1) 100%),
+                linear-gradient(to right, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 15%, rgba(10, 10, 10, 0) 85%, rgba(10, 10, 10, 1) 100%),
+                rgba(0, 0, 0, 0.5);
         }
 
         .hero > *:not(.hero-video):not(.hero-video-bg):not(.hero-overlay) {
