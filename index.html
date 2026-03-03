@@ -283,6 +283,20 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* Daktilo İmleci İçin Eklendi */
+        .typing-cursor {
+            color: #F4A460;
+            -webkit-text-fill-color: #F4A460;
+            font-weight: 300;
+            margin-left: 4px;
+            animation: blink-cursor 0.8s step-end infinite;
+        }
+
+        @keyframes blink-cursor {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
         
         .hero p {
             font-size: 1.15rem;
@@ -920,7 +934,8 @@
         </video>
         <div class="hero-overlay"></div>
 
-        <h1><span class="highlight">Brew Your Productivity</span><br>One Pomodoro at a Time</h1>
+        <h1><span class="highlight">Brew Your <span class="typing-word">Productivity</span></span><span class="typing-cursor">|</span><br>One Pomodoro at a Time</h1>
+        
         <p>Transform your focus sessions into a rewarding coffee journey.<br> Track your pomodoros, level up through coffee ranks, and stay motivated with beautiful animations.</p>
         
         <button class="watch-btn" id="watchBtn">
@@ -1223,7 +1238,6 @@
         </div>
     </footer>
 
-    <!-- Lightbox & Video -->
     <script>
     (function() {
         // Video fade-in (desktop background)
@@ -1368,6 +1382,51 @@
                 navigate(diff > 0 ? -1 : 1);
             }
         }, { passive: true });
+
+        // --- HTML Eklentisi: Typewriter (Daktilo) Efekti JavaScript Kodları ---
+        const words = ["Productivity", "Focus", "Routine", "Discipline", "Flow", "Habit"];
+        const typingElement = document.querySelector('.typing-word');
+        let wordIndex = 0;
+        let charIndex = words[0].length;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                // Sağdan sola harf harf silme
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // Soldan sağa harf harf yazma
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            // Animasyon Hızları
+            let typeSpeed = isDeleting ? 40 : 100; // Silme hızı 40ms, Yazma hızı 100ms
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                // Kelime tamamen yazıldıysa silmeden önce bekle (2 saniye)
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                // Kelime tamamen silindiyse sıradaki kelimeye geç
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 400; // Yeni kelimeye başlamadan önce kısa bir es
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        // Sayfa yüklendiğinde Productivity kelimesi ekranda hazır olduğu için 
+        // 2 saniye bekleyip doğrudan silme işlemiyle döngüyü başlatıyoruz
+        setTimeout(() => {
+            isDeleting = true;
+            typeEffect();
+        }, 2000);
+
     })();
     </script>
 </body>
