@@ -38,6 +38,58 @@
             overflow-x: hidden;
         }
         
+        /* ============================================
+           SCROLL REVEAL ANIMATIONS (Apple-style)
+           ============================================ */
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal--visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered children (e.g. cards inside a grid) */
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal-stagger.reveal--visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger delays - each child starts slightly after the previous */
+        .reveal-stagger.reveal--visible > *:nth-child(1) { transition-delay: 0ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(2) { transition-delay: 100ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(3) { transition-delay: 200ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(4) { transition-delay: 300ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(5) { transition-delay: 400ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(6) { transition-delay: 500ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(7) { transition-delay: 600ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(8) { transition-delay: 700ms; }
+        .reveal-stagger.reveal--visible > *:nth-child(9) { transition-delay: 800ms; }
+        
+        /* Respect user's reduced-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-stagger > * {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+        
         /* Navigation */
         nav {
             position: fixed;
@@ -123,7 +175,6 @@
             background: #0a0a0a;
         }
 
-        /* Blurred background copy of video */
         .hero-video-bg {
             position: absolute;
             top: 50%;
@@ -144,7 +195,6 @@
             opacity: 1;
         }
 
-        /* Main video (fully visible) */
         .hero-video {
             position: absolute;
             top: 50%;
@@ -167,9 +217,7 @@
             inset: 0;
             z-index: 1;
             background: 
-                /* Alt taraftaki erime (%50'den başlıyor) */
                 linear-gradient(to bottom, rgba(10, 10, 10, 0) 50%, rgba(10, 10, 10, 1) 100%),
-                /* Sağ ve sol taraftaki erime (Tam ortada %50'de birleşiyor) */
                 linear-gradient(to right, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 50%, rgba(10, 10, 10, 0) 50%, rgba(10, 10, 10, 1) 100%),
                 rgba(0, 0, 0, 0.5);
         }
@@ -179,7 +227,6 @@
             z-index: 2;
         }
 
-        /* Watch Video Button (mobile only) */
         .watch-btn {
             display: none;
             align-items: center;
@@ -208,7 +255,6 @@
             fill: currentColor;
         }
 
-        /* Video Modal (for mobile watch button) */
         .video-modal {
             position: fixed;
             inset: 0;
@@ -284,7 +330,6 @@
             background-clip: text;
         }
 
-        /* Daktilo İmleci İçin Eklendi */
         .typing-cursor {
             color: #F4A460;
             -webkit-text-fill-color: #F4A460;
@@ -306,7 +351,6 @@
             line-height: 1.6;
         }
         
-        /* Download Buttons */
         .download-buttons {
             display: flex;
             gap: 1rem;
@@ -393,29 +437,12 @@
             z-index: 10;
         }
 
-        .mockup-item:nth-child(1):hover img {
-            box-shadow: 0 0 20px 2px rgba(215, 114, 109, 0.5);
-        }
-
-        .mockup-item:nth-child(2):hover img {
-            box-shadow: 0 0 20px 2px rgba(118, 163, 160, 0.5);
-        }
-
-        .mockup-item:nth-child(3):hover img {
-            box-shadow: 0 0 20px 2px rgba(196, 143, 94, 0.5);
-        }
-
-        .mockup-item:nth-child(4):hover img {
-            box-shadow: 0 0 20px 2px rgba(150, 100, 255, 0.5);
-        }
-
-        .mockup-item:nth-child(5):hover img {
-            box-shadow: 0 0 20px 2px rgba(140, 80, 80, 0.5);
-        }
-
-        .mockup-item:nth-child(6):hover img {
-            box-shadow: 0 0 20px 2px rgba(132, 196, 235, 0.5);
-        }
+        .mockup-item:nth-child(1):hover img { box-shadow: 0 0 20px 2px rgba(215, 114, 109, 0.5); }
+        .mockup-item:nth-child(2):hover img { box-shadow: 0 0 20px 2px rgba(118, 163, 160, 0.5); }
+        .mockup-item:nth-child(3):hover img { box-shadow: 0 0 20px 2px rgba(196, 143, 94, 0.5); }
+        .mockup-item:nth-child(4):hover img { box-shadow: 0 0 20px 2px rgba(150, 100, 255, 0.5); }
+        .mockup-item:nth-child(5):hover img { box-shadow: 0 0 20px 2px rgba(140, 80, 80, 0.5); }
+        .mockup-item:nth-child(6):hover img { box-shadow: 0 0 20px 2px rgba(132, 196, 235, 0.5); }
         
         /* Lightbox */
         .lightbox-overlay {
@@ -480,7 +507,6 @@
             background: rgba(255, 255, 255, 0.25);
         }
 
-        /* Lightbox Navigation Arrows */
         .lightbox-arrow {
             position: absolute;
             top: 50%;
@@ -508,13 +534,8 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        .lightbox-arrow.prev {
-            left: 1.5rem;
-        }
-
-        .lightbox-arrow.next {
-            right: 1.5rem;
-        }
+        .lightbox-arrow.prev { left: 1.5rem; }
+        .lightbox-arrow.next { right: 1.5rem; }
 
         /* Ratings Section */
         .ratings {
@@ -533,19 +554,10 @@
             gap: 0.75rem; 
         }
 
-        .rating-block.left {
-            text-align: right;
-        }
-        .rating-block.left .rating-text-group {
-            align-items: flex-end;
-        }
-
-        .rating-block.right {
-            text-align: left;
-        }
-        .rating-block.right .rating-text-group {
-            align-items: flex-start;
-        }
+        .rating-block.left { text-align: right; }
+        .rating-block.left .rating-text-group { align-items: flex-end; }
+        .rating-block.right { text-align: left; }
+        .rating-block.right .rating-text-group { align-items: flex-start; }
 
         .rating-text-group {
             display: flex;
@@ -574,9 +586,7 @@
             margin-top: 2px; 
         }
 
-        .stars-empty {
-            color: #555; 
-        }
+        .stars-empty { color: #555; }
 
         .stars-filled {
             color: #FFD700; 
@@ -638,11 +648,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
+        /* Note: hover transform kept but works together with reveal */
         .review-card:hover {
-            transform: translateY(-5px);
             border-color: rgba(255, 255, 255, 0.4);
             background: rgba(255, 255, 255, 0.02);
         }
@@ -680,15 +689,8 @@
             font-size: 0.85rem;
         }
 
-        .review-country {
-            color: #888;
-            font-weight: 500;
-        }
-        
-        .review-author {
-            color: #666;
-            font-weight: 600;
-        }
+        .review-country { color: #888; font-weight: 500; }
+        .review-author { color: #666; font-weight: 600; }
         
         /* Features List */
         .features-list {
@@ -789,9 +791,7 @@
             transition: color 0.3s;
         }
         
-        .footer-links a:hover {
-            color: #fff;
-        }
+        .footer-links a:hover { color: #fff; }
         
         .copyright {
             color: #444;
@@ -809,25 +809,15 @@
 
         @media (max-width: 768px) {
             nav { padding: 0; }
-            
-            .nav-container {
-                padding: 1rem;
-            }
-
-            .social-links {
-                gap: 0.5rem;
-            }
+            .nav-container { padding: 1rem; }
+            .social-links { gap: 0.5rem; }
             
             .hero { padding: 6rem 1.5rem 2rem; background: radial-gradient(ellipse at top, #1a1207 0%, #0a0a0a 50%); }
             .hero h1 { font-size: 2.25rem; }
 
-            .hero-video, .hero-video-bg, .hero-overlay {
-                display: none;
-            }
+            .hero-video, .hero-video-bg, .hero-overlay { display: none; }
 
-            .watch-btn {
-                display: flex;
-            }
+            .watch-btn { display: flex; }
             
             .download-buttons { flex-direction: column; align-items: center; }
             .download-btn { width: 100%; max-width: 300px; justify-content: center; }
@@ -839,13 +829,8 @@
                 overflow: hidden;
             }
             
-            .mockup-item { 
-                width: 145px;
-            }
-
-            .mockup-item:nth-child(n+3) {
-                display: none;
-            }
+            .mockup-item { width: 145px; }
+            .mockup-item:nth-child(n+3) { display: none; }
             
             .ratings { 
                 flex-direction: row;
@@ -870,9 +855,7 @@
                 text-align: right;
             }
             
-            .rating-block.left .rating-text-group {
-                align-items: flex-end;
-            }
+            .rating-block.left .rating-text-group { align-items: flex-end; }
 
             .rating-block.right { 
                 flex-direction: row;
@@ -880,24 +863,16 @@
                 text-align: left;
             }
             
-            .rating-block.right .rating-text-group {
-                align-items: flex-start;
-            }
+            .rating-block.right .rating-text-group { align-items: flex-start; }
 
-            /* Lightbox mobile */
             .lightbox-arrow {
                 width: 40px;
                 height: 40px;
                 font-size: 1.1rem;
             }
 
-            .lightbox-arrow.prev {
-                left: 0.75rem;
-            }
-
-            .lightbox-arrow.next {
-                right: 0.75rem;
-            }
+            .lightbox-arrow.prev { left: 0.75rem; }
+            .lightbox-arrow.next { right: 0.75rem; }
         }
     </style>
 </head>
@@ -995,18 +970,15 @@
         </div>
     </section>
 
-    <section class="ratings">
-        
+    <section class="ratings reveal reveal-stagger">
         <div class="rating-block left">
             <div class="rating-text-group">
                 <div class="score">4.8<span class="total">/5</span></div>
-                
                 <div class="stars">
                     <span class="stars-empty">★★★★★</span>
                     <span class="stars-filled" style="width: 96%;">★★★★★</span> 
                 </div>
             </div>
-            
             <div class="store-icon apple-new">
                 <img src="images/appstore.png" alt="App Store">
             </div>
@@ -1018,10 +990,8 @@
                     <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.2 60.1 60.1L104.6 499z"/>
                 </svg>
             </div>
-
             <div class="rating-text-group">
                 <div class="score">5.0<span class="total">/5</span></div>
-                
                 <div class="stars">
                     <span class="stars-empty">★★★★★</span>
                     <span class="stars-filled" style="width: 100%;">★★★★★</span> 
@@ -1031,7 +1001,7 @@
     </section>
 
     <section class="reviews">
-        <div class="reviews-grid">
+        <div class="reviews-grid reveal reveal-stagger">
             <div class="review-card">
                 <div class="review-header">
                     <span class="review-title">Great Idea</span>
@@ -1080,7 +1050,7 @@
     </section>
 
     <section class="features-list" id="features">
-        <div class="features-list-grid">
+        <div class="features-list-grid reveal reveal-stagger">
             <div class="feature-item">
                 <div class="feature-icon">
                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1198,7 +1168,7 @@
         </div>
     </section>
 
-    <section class="cta">
+    <section class="cta reveal">
         <h2>Start Brewing Your Productivity</h2>
         <p>Join thousands of focused individuals who transformed their work habits.</p>
         <div class="download-buttons">
@@ -1226,7 +1196,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="reveal">
         <div class="footer-content">
             <div class="footer-links">
                 <a href="mailto:coffeepomodoro@proton.me">Contact</a>
@@ -1240,13 +1210,37 @@
 
     <script>
     (function() {
-        // Video fade-in (desktop background)
+        // ============================================
+        // SCROLL REVEAL ANIMATIONS (Apple-style)
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal--visible');
+                    // Trigger once, then stop observing
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,       // Trigger when 15% of element is in view
+            rootMargin: '0px 0px -80px 0px'  // Start animation slightly before bottom
+        });
+        
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        // ============================================
+        // VIDEO LOAD FADE-IN
+        // ============================================
         document.querySelectorAll('.hero-video, .hero-video-bg').forEach(vid => {
             vid.addEventListener('canplaythrough', () => vid.classList.add('loaded'));
             if (vid.readyState >= 4) vid.classList.add('loaded');
         });
 
-        // Watch button video modal (mobile)
+        // ============================================
+        // WATCH BUTTON VIDEO MODAL (MOBILE)
+        // ============================================
         const watchBtn = document.getElementById('watchBtn');
         if (watchBtn) {
             const videoModal = document.createElement('div');
@@ -1279,11 +1273,12 @@
             });
         }
 
-        // Tüm mockup resimlerini topla
+        // ============================================
+        // LIGHTBOX (MOCKUPS)
+        // ============================================
         const allImages = Array.from(document.querySelectorAll('.mockup-item img'));
         let currentIndex = 0;
 
-        // Overlay oluştur
         const overlay = document.createElement('div');
         overlay.className = 'lightbox-overlay';
         overlay.innerHTML = `
@@ -1338,12 +1333,10 @@
             showImage(newIndex);
         }
 
-        // Mockup resimlerine tıklama
         allImages.forEach((img, index) => {
             img.addEventListener('click', () => openLightbox(index));
         });
 
-        // Ok butonları
         prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             navigate(-1);
@@ -1354,15 +1347,12 @@
             navigate(1);
         });
 
-        // Overlay'e tıklayınca kapat
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) closeLightbox();
         });
 
-        // Kapat butonu
         lbClose.addEventListener('click', closeLightbox);
 
-        // Klavye desteği
         document.addEventListener('keydown', (e) => {
             if (!overlay.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -1370,7 +1360,6 @@
             if (e.key === 'ArrowRight') navigate(1);
         });
 
-        // Swipe desteği (mobil)
         let touchStartX = 0;
         overlay.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
@@ -1383,7 +1372,9 @@
             }
         }, { passive: true });
 
-        // --- HTML Eklentisi: Typewriter (Daktilo) Efekti JavaScript Kodları ---
+        // ============================================
+        // TYPEWRITER EFFECT
+        // ============================================
         const words = ["Productivity", "Focus", "Routine", "Discipline", "Flow", "Habit"];
         const typingElement = document.querySelector('.typing-word');
         let wordIndex = 0;
@@ -1394,34 +1385,27 @@
             const currentWord = words[wordIndex];
 
             if (isDeleting) {
-                // Sağdan sola harf harf silme
                 typingElement.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
             } else {
-                // Soldan sağa harf harf yazma
                 typingElement.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
             }
 
-            // Animasyon Hızları
-            let typeSpeed = isDeleting ? 40 : 100; // Silme hızı 40ms, Yazma hızı 100ms
+            let typeSpeed = isDeleting ? 40 : 100;
 
             if (!isDeleting && charIndex === currentWord.length) {
-                // Kelime tamamen yazıldıysa silmeden önce bekle (2 saniye)
                 typeSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
-                // Kelime tamamen silindiyse sıradaki kelimeye geç
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 400; // Yeni kelimeye başlamadan önce kısa bir es
+                typeSpeed = 400;
             }
 
             setTimeout(typeEffect, typeSpeed);
         }
 
-        // Sayfa yüklendiğinde Productivity kelimesi ekranda hazır olduğu için 
-        // 2 saniye bekleyip doğrudan silme işlemiyle döngüyü başlatıyoruz
         setTimeout(() => {
             isDeleting = true;
             typeEffect();
