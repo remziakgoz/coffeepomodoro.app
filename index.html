@@ -44,31 +44,29 @@
         
         .reveal {
             opacity: 0;
-            transform: translate3d(0, 24px, 0);
+            transform: translateY(40px);
             transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
                         transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: opacity, transform;
-            backface-visibility: hidden;
         }
         
         .reveal--visible {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform: translateY(0);
         }
         
         /* Staggered children (e.g. cards inside a grid) */
         .reveal-stagger > * {
             opacity: 0;
-            transform: translate3d(0, 24px, 0);
+            transform: translateY(40px);
             transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
                         transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: opacity, transform;
-            backface-visibility: hidden;
         }
         
         .reveal-stagger.reveal--visible > * {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform: translateY(0);
         }
         
         /* Stagger delays - each child starts slightly after the previous */
@@ -663,7 +661,7 @@
         }
 
         .reveal-stagger.reveal--visible > .review-card:hover {
-            transform: translate3d(0, -5px, 0);
+            transform: translateY(-5px);
             border-color: rgba(255, 255, 255, 0.4);
             background: rgba(255, 255, 255, 0.02);
             transition: transform 0.3s ease,
