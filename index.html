@@ -648,12 +648,25 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: border-color 0.3s ease, background 0.3s ease;
         }
 
-        /* Note: hover transform kept but works together with reveal */
-        .review-card:hover {
+        /* Hover lift animation - only applies AFTER reveal animation completes.
+           The inner wrapper trick: we target cards inside a revealed grid. */
+        .reveal-stagger.reveal--visible > .review-card {
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        border-color 0.3s ease,
+                        background 0.3s ease;
+        }
+
+        .reveal-stagger.reveal--visible > .review-card:hover {
+            transform: translateY(-5px);
             border-color: rgba(255, 255, 255, 0.4);
             background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s ease,
+                        border-color 0.3s ease,
+                        background 0.3s ease;
         }
         
         .review-header {
